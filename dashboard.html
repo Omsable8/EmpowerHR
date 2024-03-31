@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body style="background-color: beige;">
+    <nav class="navbar navbar-expand-sm navbar-light bg-secondary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button
+                class="navbar-toggler d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a href="#" class="btn btn-light">Onboard</a>
+                    </li>
+                </ul>
+                <input type="number" id="ageInput">
+                <button onclick="searchByAge()">Search</button>
+                
+            </div>
+        </div>
+    </nav>
+    
+    
+    <!--<table class="table" id="tableContainer"></table> -->
+    <div class="mt-4" id="tableContainer">
+        
+    </div>
+    <div class="container">
+        <p style="margin-top: 2vw;">Comprehensive data of all employees in your Organisation.</p>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table body will be populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <button id="nextButton" class="btn btn-primary" style="margin-right: 2vw;">+10</button>
+        <button id="backButton" class="btn btn-primary">-10</button>
+    </div>
+    
+    
+
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            var lines;
+            var currentIndex = 0;
+            var tbody = $("#tableBody");
+
+            // Load CSV data
+            $.ajax({
+                type: "GET",
+                url: "testdata.csv",
+                dataType: "text",
+                success: function(data) {
+                    lines = data.split("\n");
+                    loadTableData(currentIndex);
+                }
+            });
+
+            // Load 5 results at a time
+            function loadTableData(startIndex) {
+                tbody.empty();
+                for (var i = startIndex; i < Math.min(startIndex + 7, lines.length); i++) {
+                    var rowData = lines[i].split(",");
+                    var row = $("<tr>");
+
+                    $.each(rowData, function(index, item){
+                        row.append("<td>" + item + "</td>");
+                    });
+
+                    tbody.append(row);
+                }
+            }
+
+            // Handle Next button click
+            $("#nextButton").click(function() {
+                currentIndex += 7;
+                loadTableData(currentIndex);
+            });
+            $("#backButton").click(function() {
+                currentIndex -= 7;
+                loadTableData(currentIndex);
+            });
+        });
+    
+        var rowdata2;
+        var dataArray; 
+        var foundRow;
+        var rowData;
+        var rows;
+        var fullArray;
+function searchByAge() {
+    var age = parseInt(document.getElementById("ageInput").value);
+
+    fetch('testdata.csv')
+        .then(response => response.text())
+        .then(data => {
+            rows = data.split('\n');
+            foundRow = rows.find(row => {
+                var rowData = row.split('\t'); // Assuming tab-separated values
+                return parseInt(rowData[0]) === age;
+            });
+
+            if (foundRow) {
+                rowData = foundRow.split('\t');
+                var tableHTML = "<table border='1'><tr>";
+
+                rowdata2 = foundRow;
+
+                rowData.forEach(cell => {
+                    tableHTML += "<td>" + cell + "</td>";
+                });
+                tableHTML += "</tr></table>";
+                document.getElementById("tableContainer").innerHTML = tableHTML;
+            } else {
+                document.getElementById("tableContainer").innerHTML = "No data found for age " + age;
+            }
+
+            dataArray = rowdata2.split(',');
+            logDataArrayOutsideThen(dataArray);
+        })
+        
+}
+
+function logDataArrayOutsideThen(dataArray) {
+    var myArrayString = localStorage.getItem("myArray");
+    var myArray = JSON.parse(myArrayString);
+    console.log(dataArray); // Log dataArray outside of .then()
+    console.log(myArray);
+    myArray2 = Object.values(myArray);
+    fullArray = dataArray.concat(myArray2);
+    console.log(fullArray)
+}
+           
+</script>
+</body>
+</html>
