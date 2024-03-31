@@ -120,7 +120,24 @@ app.post('/hrsignup', (req, res) => {
     });
 });
 
+
+//survey responses 
+
+app.get('/get-survey-responses', (req, res) => {
+    const query = 'SELECT * FROM survey'; // Adjust the query based on your database schema
+    con.query(query, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.setHeader('Content-Type', 'application/json');
+            res.status(500).json({ success: false, message: 'Internal server error' });
+            return;
+        }
+        res.json(result);
+    });
+});
+
+
 // Start the server
 app.listen(port, () => {
-    console.log('Server running at http://localhost:${port}');
+    console.log(`Server running at http://localhost:${port}`);
 });

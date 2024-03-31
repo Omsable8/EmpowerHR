@@ -227,3 +227,30 @@ function hr_sign(){
         });
     }
 }
+
+
+//survey response
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('http://localhost:3000/get-survey-responses')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.getElementById('surveyResponsesTable').getElementsByTagName('tbody')[0];
+        data.forEach(response => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${response.name}</td>
+                <td>${response.job_inv}</td>
+                <td>${response.job_sat}</td>
+                <td>${response.env_sat}</td>
+                <td>${response.rel_sat}</td>
+                <td>${response.balance}</td>
+                <td>${response.overtime}</td>
+                <td>${response.other}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    })
+    .catch(error => console.error('Error fetching survey responses:', error));
+});
+
