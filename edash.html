@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #dashboard {
+            display: flex;
+            height: 100vh;
+        }
+        
+        #sidebar {
+            width: 200px;
+            background-color: #0c0535;
+            color: white;
+            padding: 20px;
+        }
+        
+        #sidebar h2 {
+            margin: 0;
+        }
+        
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        #sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        
+        #main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: rgb(184, 238, 247);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #main-content h1 {
+            margin-top: 0;
+        }
+        
+        #profile {
+            display: none;
+        }
+        
+        #tasks {
+            display: none;
+        }
+        
+        #reports {
+            display: none;
+        }
+        
+        #profile img {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="dashboard">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#reports">Reports</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content">
+            <h1>Welcome to the Employee Dashboard</h1>
+            <div id="profile">
+                <h2>Profile</h2>
+                <p>Profile information goes here.</p>
+                <div ALIGN="right">
+                    <img src="https://st3.depositphotos.com/15648834/17930/v/450/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="200" height="200">
+                </div>
+            </div>
+            <div id="tasks">
+                <h2>Tasks</h2>
+                <p>Tasks information goes here.</p>
+            </div>
+            <div id="reports">
+                <h2>Reports</h2>
+                <p>Reports information goes here.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript for navigation
+        document.querySelectorAll('#sidebar ul li a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.querySelectorAll('#main-content > div').forEach(section => {
+                    section.style.display = section.id === targetId ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
