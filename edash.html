@@ -3,114 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Dashboard</title>
-    <style>
-        body {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #dashboard {
-            display: flex;
-            height: 100vh;
-        }
-        
-        #sidebar {
-            width: 200px;
-            background-color: #0c0535;
-            color: white;
-            padding: 20px;
-        }
-        
-        #sidebar h2 {
-            margin: 0;
-        }
-        
-        #sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        #sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
-            border-bottom: 1px solid #444;
-        }
-        
-        #main-content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: rgb(184, 238, 247);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        #main-content h1 {
-            margin-top: 0;
-        }
-        
-        #profile {
-            display: none;
-        }
-        
-        #tasks {
-            display: none;
-        }
-        
-        #reports {
-            display: none;
-        }
-        
-        #profile img {
-            float: right;
-        }
-    </style>
+    <title>Document</title>
+    <link rel="stylesheet" href="style 2.css">
+    <script src="https://kit.fontawesome.com/9358dfcdc8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="dashboard">
-        <!-- Sidebar -->
-        <div id="sidebar">
-            <h2>Navigation</h2>
-            <ul>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#tasks">Tasks</a></li>
-                <li><a href="#reports">Reports</a></li>
-            </ul>
+    <section id="menu">
+        <div class = 'logo'>
+            <img src="logo.png" alt="">
+            <h2>EmpowerHR</h2>
         </div>
-        <!-- Main Content -->
-        <div id="main-content">
-            <h1>Welcome to the Employee Dashboard</h1>
-            <div id="profile">
-                <h2>Profile</h2>
-                <p>Profile information goes here.</p>
-                <div ALIGN="right">
-                    <img src="https://st3.depositphotos.com/15648834/17930/v/450/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" width="200" height="200">
+
+        <div class="items">
+            <li><i class="fa-solid fa-house"></i><a href="#">Dashboard</a></li>
+            <li><i class="fa-solid fa-user-group"></i><a href="#">My Profile</a></li>
+            <li><i class="fa-solid fa-building"></i><a href="#">Attendance</a></li>
+            <li><i class="fa-regular fa-calendar"></i><a href="#">Calendar</a></li>
+            <li><i class="fa-solid fa-pen-to-square"></i><a href="#">Survey</a></li>
+            <li><i class="fa-solid fa-flag"></i><a href="#">Report a problem</a></li>
+            <li><i class="fa-solid fa-list-check"></i><a href="#">Manage</a></li>
+            <li><i class="fa-solid fa-gear"></i><a href="#">Settings</a></li>
+            <li><i class="fa-solid fa-user"></i><a href="#">My Profile</a></li>
+            <li><i class="fa-solid fa-right-from-bracket"></i><a href="index.html">Log out</a></li>
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>            
+            </div>
+
+            <div class="profile">
+                <i class="fa-solid fa-bell"></i>
+                <img src="Profile1.png" alt="">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Employee Dashboard
+        </h3>
+
+        <div class="value">
+            <div class="val-box">
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <div>
+                    <h3></h3>
+                    <span>Anouncements</span>
                 </div>
             </div>
-            <div id="tasks">
-                <h2>Tasks</h2>
-                <p>Tasks information goes here.</p>
+            <div class="val-box">
+                <i class="fa-solid fa-building"></i>
+                <div>
+                    <h3></h3>
+                    <span>Attendance</span>
+                </div>
             </div>
-            <div id="reports">
-                <h2>Reports</h2>
-                <p>Reports information goes here.</p>
+            <div class="val-box">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <div>
+                    <h3></h3>
+                    <span>My Salary</span>
+                </div>
+            </div>
+            <div class="val-box">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <div>
+                    <h3></h3>
+                    <span><a href="index.html" style="text-decoration: none;">Log out</a></span>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        // JavaScript for navigation
-        document.querySelectorAll('#sidebar ul li a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.querySelectorAll('#main-content > div').forEach(section => {
-                    section.style.display = section.id === targetId ? 'block' : 'none';
-                });
-            });
-        });
-    </script>
+
+        <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Task</td>
+                        <td>Deadline</td>
+                        <td>Status</td>
+                        <td>Remarks</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="people">
+                            <div class="people-de">
+                                <h5>Task 1</h5>
+                            </div>
+                        </td>
+
+                        <td class="people-title">
+                            <h5>xx/xx/xxxx</h5>
+                            <p></p>
+                        </td>
+
+                        <td class="active"><p>Completed</p></td>
+
+                        <td class="">
+                            <p>Excellent</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Project Beta</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>--/--/----</h5>
+                          <p>Development</p>
+                        </td>
+                        <td class="inactive"><p>In Progress</p></td>
+                        <td class=""></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Design Mockup</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>28/03/2024</h5>
+                          <p>Submitted</p>
+                        </td>
+                        <td class="active"><p>Completed</p></td>
+                        <td class="needs-work"><p>Needs Work</p></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Client Call</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>05/04/2024</h5>
+                          <p>Meeting Scheduled</p>
+                        </td>
+                        <td class="inactive"><p>Pending</p></td>
+                        <td class=""></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Social Media Management</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>Ongoing</h5>
+                          <p></p>
+                        </td>
+                        <td class="inactive"><p>In Progress</p></td>
+                        <td class=""></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Data Analysis Report</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>31/03/2024</h5>
+                          <p>Submitted</p>
+                        </td>
+                        <td class="active"><p>Completed</p></td>
+                        <td class="outstanding"><p>Outstanding</p></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Marketing Campaign</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>--/--/----</h5>
+                          <p>Planning Phase</p>
+                        </td>
+                        <td class="inactive"><p>Pending</p></td>
+                        <td class=""></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Code Review</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>02/04/2024</h5>
+                          <p>Submitted for Review</p>
+                        </td>
+                        <td class="inactive"><p>Pending Review</p></td>
+                        <td class=""></td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="people">
+                          <div class="people-de">
+                            <h5>Website Bug</h5>
+                          </div>
+                        </td>
+                        <td class="people-title">
+                          <h5>01/04/2024</h5>
+                          <p>Fixed (Testing)</p>
+                        </td>
+                        <td class="active"><p>Completed</p></td>
+                        <td class="needs-work"><p>Needs Work</p></td>
+                      </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </body>
 </html>
